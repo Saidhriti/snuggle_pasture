@@ -524,3 +524,217 @@ clothes_sold = clothes_shop.add_products(clothes_dict)
 
 potions_dict = {(Maximus.name, Maximus.tpe):30, (Friendlymaker.name, Friendlymaker.tpe):30, (Addyears.name, Addyears.tpe):30, (Happycalf.name, Happycalf.tpe):30, (Upgrade.name, Upgrade.tpe):50, (Instantmoney.name, Instantmoney.tpe):50}
 potions_sold = pub_shop.add_products(potions_dict)
+
+# pet functions
+def feed_pet():
+    global player_location
+    finished = False
+    while True:
+      if user.food_items:
+        text_loading("What would you like to feed your pet?")
+        for index, food in enumerate(user.food_items):
+            text_loading(f"{index+1}. {food[0]}, {food[1]}")
+        while True:
+            try:
+                choice = int(input("Enter a number: "))
+                if choice < 1 or choice > len(user.food_items):
+                    text_loading("\nPlease enter a number from the list above.\n")
+                else:
+                    chosen_food = user.food_items[choice-1]
+                    user.pet.feed(chosen_food)
+                    user.food_items.remove(chosen_food)
+                    finished = True
+                    break
+            except ValueError:
+                text_loading("\nPlease enter a number from the list above.\n")
+                continue
+            if finished:
+               break
+      else:
+        while True:
+            text_loading(f"You have no food to feed {pet_choice}! Would you like to go to Grape Goods?")
+            get_food = input("\n\n(⌒▽⌒)☞ ")
+            if get_food.lower() == "yes":
+                player_location = "Grape Goods"
+                text_loading("\nYou are heading to Grape Goods!")
+                display_location(player_location)
+                text_loading(f"You have arrived at {player_location}.\n\n")
+                food_shop.at_shop(user)
+                finished = False
+            elif get_food.lower() == "no":
+                text_loading("No problem\n\n")
+                finished = False
+            else:
+                text_loading("\nPlease enter yes or no!\n")
+                finished = True
+            if not finished:
+               break
+      if finished:
+         break
+      if not finished:
+         break
+
+def play_pet():
+    global player_location
+    finished = False
+    while True:
+      if user.toys:
+         text_loading(f"Which toy would you like {pet_choice} to play with?")
+         for index, toy in enumerate(user.toys):
+            text_loading(f"{index+1}. {toy[0]}, {toy[1]}")
+         while True:
+            try:
+                choice = int(input("Enter a number: "))
+                if choice < 1 or choice > len(user.toys):
+                    text_loading("\nPlease enter a number from the list above.\n")
+                else:
+                    chosen_toy = user.toys[choice-1]
+                    user.pet.play(chosen_toy)
+                    user.toys.remove(chosen_toy)
+                    finished = True
+                    break
+            except ValueError:
+                text_loading("\nPlease enter a number from the list above.\n")
+                continue
+            if finished: 
+               break
+      else:
+         while True:
+            get_toys = input(f"You have no toys for {pet_choice} to play with! Would you like to go to Pretty Pets?\n\n(⌒▽⌒)☞ ")
+            if get_toys.lower() == "yes":
+                player_location = "Pretty Pets"
+                text_loading("You are heading to Pretty Pets!")
+                display_location(player_location)
+                text_loading(f"You have arrived at {player_location}.\n\n")
+                pet_shop.at_shop(user)
+                finished = False
+                break
+            elif get_toys.lower() == "no":
+                text_loading("No problem\n\n")
+                finished = False
+            else:
+                text_loading("\nPlease enter yes or no!\n")
+                finished = True
+            if not finished:
+               break
+      if finished:
+          break
+      if not finished:
+          break
+
+def change_pet():
+   global player_location
+   finished = False
+   while True:
+      if user.petcessories:
+         text_loading(f"Which petcessory would you like {pet_choice} to put on?")
+         for index, petcessory in enumerate(user.petcessories):
+            text_loading(f"{index+1}. {petcessory[0]}, {petcessory[1]}")
+         while True:
+            try:
+               choice = int(input("Enter a number: "))
+               if choice < 1 or choice > len(user.petcessories):
+                  text_loading("\nPlease enter a number from the list above.\n")
+               else:
+                  chosen_petcessory = user.petcessories[choice-1]
+                  user.pet.change(chosen_petcessory)
+                  user.petcessories.remove(chosen_petcessory)
+                  finished = True
+                  break
+            except ValueError:
+               text_loading("\nPlease enter a number from the list above.\n")
+               continue
+            if finished:
+               break
+      else:
+         while True:
+            get_petcessories = input("You have no petcessories for {pet} to put on! Would you like to go to Awful Attire?\n\n(⌒▽⌒)☞ ".format(pet = pet_choice))
+            if get_petcessories.lower() == "yes":
+               player_location = "Awful Attire"
+               text_loading("You are heading to Awful Attire!")
+               display_location(player_location)
+               text_loading(f"You have arrived at {player_location}.\n\n")
+               clothes_shop.at_shop(user)
+               finished = False
+               break
+            elif get_petcessories.lower() == "no":
+               text_loading("No problem\n\n")
+               finished = False
+            else:
+               text_loading("\nPlease enter yes or no!\n")
+               finished = True
+            if not finished:
+               break
+      if finished:
+         break
+      if not finished:
+         break
+
+def potion_pet():
+   global player_location
+   finished = False
+   while True:
+      if user.potions:
+         text_loading(f"Which potion would you like to give to {pet_choice}?")
+         for index, potion in enumerate(user.potions):
+            text_loading(f"{index+1}. {potion[0]}, {potion[1]}")
+         while True:
+            try:
+               choice = int(input("Enter a number: "))
+               if choice < 1 or choice > len(user.potions):
+                  text_loading("\nPlease enter a number from the list above.\n")
+               else:
+                  chosen_potion = user.potions[choice-1]
+                  user.pet.potion(chosen_potion, user)
+                  user.potions.remove(chosen_potion)
+                  finished = True
+                  break
+            except ValueError:
+               text_loading("\nPlease enter a number from the list above.\n")
+               continue
+            if finished:
+               break
+      else:
+         while True:
+            get_potions = input("You have no potions to give to {pet}! Would you like to go to Toadstool Tavern?\n\n(⌒▽⌒)☞ ".format(pet = pet_choice))
+            if get_potions.lower() == "yes":
+               player_location = "Toadstool Tavern"
+               text_loading("You are heading to Toadstool Tavern!")
+               display_location(player_location)
+               text_loading(f"You have arrived at {player_location}.\n\n")
+               pub_shop.at_shop(user)
+               finished = False
+               break
+            elif get_potions.lower() == "no":
+               text_loading("No problem\n\n")
+               finished = False
+            else:
+               text_loading("\nPlease enter yes or no!\n")
+               finished = True
+            if not finished:
+               break
+      if finished:
+         break
+      if not finished:
+         break
+
+def work():
+    text_loading("Here are the latest stock calculations that need solving!\n\n")
+    num_correct = 0
+    while num_correct < 5:
+        question, answer = generate_question()
+        text_loading(question)
+        user_answer = input("Enter your answer: ")
+        try:
+            user_answer = int(user_answer)
+            if user_answer == answer:
+                num_correct += 1
+                text_loading("Correct!")
+            else:
+                text_loading("Incorrect, try again.")
+        except ValueError:
+            text_loading("Invalid input, try again.")
+    user.money += 25
+    text_loading(f"Thank you for your hard work. We have added 15 dabloons to your account. You now have {user.money} dabloons.")
+
+
