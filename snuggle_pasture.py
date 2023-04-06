@@ -737,4 +737,242 @@ def work():
     user.money += 25
     text_loading(f"Thank you for your hard work. We have added 15 dabloons to your account. You now have {user.money} dabloons.")
 
+# formatting references
+border1 = ". . • ☆ . ° .• °:. *₊ ° . ☆. . • ☆ . ° .• °:. *₊ ° . ☆. . • ☆ . ° .• °:. *₊ ° . ☆. . • ☆ . ° .• °:. *₊ "
+border2 = "⋆⋅☆⋅⋆ ─────────────────────────────────────────  ⋆⋅☆⋅⋆  ───────────────────────────────────────── ⋆⋅☆⋅⋆"
+border3 = "❀•°❀°•❀•°❀°•❀•°❀°•❀•°❀°•❀•°❀°•❀•°❀°•❀•°❀°•❀•°❀°•❀•°❀°•❀•°❀°•❀•°❀°•❀•°❀°•❀•°❀°•❀•°❀°•❀•°❀°•❀•°❀°•❀•°❀°•❀"
+border4 = "(._.) ( l: ) ( .-. ) ( :l ) (._.) ( l: ) ( .-. ) ( :l ) (._.) ( l: ) ( .-. ) ( :l ) (._.) ( l: ) ( .-. )"
+
+# ¯\_(ツ)_/¯ (づ｡◕‿‿◕｡)づ (づ￣ ³￣)づ 
+# (◕‿◕✿) (☞ﾟヮﾟ)☞ ☜(ﾟヮﾟ☜) ♪~ ᕕ(ᐛ)ᕗ     
+# ༼ つ ಥ‿‿ಥ ༽つ ~(˘▾˘~) (~˘▾˘)~ \ (•◡•) /
+# (._.) ( l: ) ( .-. ) ( :l ) (._.)
+# ᕦ(ò_óˇ)ᕤ ᕙ(⇀‸↼‶)ᕗ (✿´‿`)
+# ("\n｡･:*˚:✧｡ xxx ｡✧:˚*:･｡")
+# animation()
+
+
+# script before game loop
+pygame.mixer.music.load(r'intro.mp3')
+pygame.mixer.music.play()
+
+loading(3.5)
+
+text_loading("\n\033[3m｡･:*˚:✧｡ Welcome to Snuggle Pasture (◕‿◕✿) Please tell us your name, and make sure to hit enter ｡✧:˚*:･｡\033[0m")
+
+p_name = input("\n\n(⌒▽⌒)☞ ")
+print()
+
+player_name = check_name(p_name.title())
+
+text_loading(f"Well, howdy there {player_name}! You're about to embark on a wholesome adventure (✿´‿`)\n")
+
+text_loading("\n" + border2 + "\n\n")
+
+loading(0.5)
+
+frames = [
+r"""
+___________________________________/   ,   /________
+                                            
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+    
+ ___________________        __________________________
+                   /   ,   / """,
+
+r"""
+___________________________________/   ,   /_ .--⹁ _
+                                            '0---0'~
+ _ _  ,--.  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+    ~'O---O'
+ ___________________        __________________________
+                   /   ,   / """,
+
+r"""
+____________________________  .--⹁ /   ,   /________
+                            '0---0'~
+ _ _ _ _ _ _  ,--.  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  
+            ~'O---O'
+ ___________________        __________________________
+                   /   ,   / """,
+                            
+r"""
+_________________  .--⹁  __________/   ,   /________
+                 'O---O'~ 
+ _ _ _ _ _ _ _ _ _ _ _   ,--.   _ _ _ _ _ _ _ _ _ _ _ _
+                       ~'O---O'
+ ___________________        __________________________ 
+                   /   ,   / """,
+
+r"""
+________  .--⹁  ___________________/   ,   /________
+        '0---0'~
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _   ,--.   _ _ _ _ _ _ _ 
+                                 ~'O---O'
+ ___________________        __________________________
+                   /   ,   / """,
+
+r"""
+.--⹁  _____________________________/   ,   /________
+---O'~
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _   ,--.  
+                                                 ~'O---
+ ___________________        __________________________ 
+                   /   ,   / """,
+
+r"""
+-⹁  _______________________________/   ,   /________
+-O'~
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ,-  
+                                                   ~'O-
+ ___________________        __________________________ 
+                   /   ,   / """
+
+]
+
+num_repeats = 3
+
+for i in range(num_repeats):
+    for idx, frame in enumerate(frames):
+        if i == 0 and idx == 0:
+            print(frame, end="\r")
+        else:
+            print("\n" * 50)
+            os.system('cls' if os.name == 'nt' else 'clear') 
+            print(frame, end="\r")
+        loading(0.2)
+
+print("\n\n")
+
+text_loading("You've come a long way from the city with all them boxes in your car.\nLooks like you're ready to start a new life out here in the countryside ᕦ(ò_óˇ)ᕤ\n\nIt's a cozy spot, with friendly folks, rolling fields, and all kinds of critters roaming around ~(˘▾˘~)\n\nSo, tell us now, friend - what's the name of this here place you've hitched your wagon to?")
+
+t_name = input("\n\n(⌒▽⌒)☞ ")
+print()
+
+town_name = check_name(t_name.title())
+
+text_loading(f"{town_name} is just about as pretty as a fresh-picked bouquet of wildflowers in the morning dew!\n\n\n")
+
+text_loading(border3 + "\n")
+
+print()
+text_loading('''  
+      __________ ,%%&%,
+     /\     _   \%&&%%&%
+    /  \___/^\___\%&%%&&
+    |  | []   [] |%\Y&%\'
+    |  |   .-.   | ||  
+  ~~@._|@@_|||_@@|~||~~~~~~~~~~~~~
+       `""") )"""` ''')
+print()
+
+loading(1)
+
+text_loading("\n\nYou sure did snag yourself a mighty fine deal on this here house in the country, but it's a bit more spacious than you bargained for, ain't it?.\n\nAs you sit there ponderin' whether you need yourself a roommate to help fill up all that space, you hear a knockin' on your front door.\n\nWho could that be, you wonder? Only one way to find out, I reckon.\n\n")
+
+loading(1)
+text_loading("♪~ ᕕ(ᐛ)ᕗ\n\n")
+loading(1)
+
+text_loading(f"\033[3m{player_name}, this here's Petunia, owner of Pretty Pets - the only darn tootin' animal distributor still standin'\033[0m \ (•◡•) / \n\n\033[3mNow listen up, 'cause I've got some mighty important news for ya.")
+loading(1)
+text_loading(f"'Round these parts, it's a long-held tradition to welcome new folks with a cute cow to call their own - don't ask why \033[0m(☞ﾟヮﾟ)☞ ☜(ﾟヮﾟ☜)\033[3m\n\nSo let's take you on down to my shop and help you pick out the perfect companion for your new life in {town_name}\033[0m!\n")
+
+loading(1)
+text_loading("\n\nBefore you can say anything, Petunia guesses what's on your mind ¯\_(ツ)_/¯ \n\n\n")
+loading(1)
+
+text_loading("\033[3mI know what you're thinkin' - you just moved out to the countryside, and money might be a little tight." + "\nBut don't you worry none, 'cause we're givin' this here pet to you as a gift." + "\n\nAnd as for the other costs, well, let's just say our prices are a mite more reasonable than them big-city pet stores." + f"\n\nSo what do ya say, {player_name}? You gonna turn down our generous offer of a new furry friend?\033[0m\n\n")
+
+loading(1)
+
+text_loading("\nWell, I reckon you don't really have much of a choice in the matter - you're goin' to Pretty Pets with Petunia, and that's that!\n\n\n")
+
+loading(1)
+
+text_loading(f"\033[3mLet's go! The pets are just itchin' to meet the newest member of {town_name}'s community.\033[0m\n\n\n")
+
+text_loading(border1 + "\n\n\n")
+
+text_loading("As you walk to the shop, you'll see all sorts of sights along the way. And when you arrive, you'll be greeted by a whole slew of critters just beggin' for a new home.\n\n")
+
+loading(1.5)
+
+text_loading("""
+                            +&-
+                          _.-^-._    .--.
+                       .-'   _   '-. |__|
+                      /     |_|     \|  |
+                     /               \  |
+                    /|     _____     |\ |
+                     |    |==|==|    |  |
+ |---|---|---|---|---|    |--|--|    |  |
+ |---|---|---|---|---|    |==|==|    |  |
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""", delay = 0.01)
+      
+loading(1.5)
+
+text_loading("\n\n\033[3mNow, let's take a look at what we've got here!\033[0m\n\n")
+
+list_products_once(pets_sold, "Currently we have these amazing animals waiting for forever homes:")
+
+loading(1.5)
+
+text_loading(f"\033[3mWhich cow will it be {player_name}?\n\nTake your time, and choose wisely. This here's a big decision, and it's one you'll have to stick with for the rest of your time in our little town.\n\nWhen you find the one for you, you'll know it in your heart.\033[0m")
+
+p_choice = input("\n\n(⌒▽⌒)☞ ")
+
+pet_choice = p_choice.title()
+
+while pet_choice not in ['Gulliver', 'Caroline', 'Chase', 'Cuddly', 'Bo', 'Pooh']:
+    text_loading("\nY'all chose a frickin' imaginary pet! C'mon and enter a name from our list.")
+    p_choice = input("\n\n(⌒▽⌒)☞ ")
+    pet_choice = p_choice.title()
+
+if pet_choice == 'Gulliver':
+  user = Player(player_name, Gulliver)
+elif pet_choice == 'Caroline':
+  user = Player(player_name, Caroline)
+elif pet_choice == 'Chase':
+  user = Player(player_name, Chase)
+elif pet_choice == 'Cuddly':
+  user = Player(player_name, Cuddly)
+elif pet_choice == 'Bo':
+  user = Player(player_name, Bo)
+elif pet_choice == 'Pooh':
+  user = Player(player_name, Pooh)
+
+pygame.mixer.music.load(r'celebration.mp3')
+pygame.mixer.music.play()
+
+while pygame.mixer.music.get_busy():
+    loading(1)
+
+loading(1)
+text_loading("\nNew player created:\n")
+loading(1)
+
+text_loading(f"{user}\n\n")
+
+text_loading("Petunia beams with joy! つ ಥ‿‿ಥ ༽つ\n\n")
+
+text_loading(f"\033[3mI hope you liked our welcome! Let's get you and {pet_choice} back to your home.\033[0m\n\n")
+
+text_loading("\n" + border4 + "\n\n")
+
+loading(2)
+text_loading(f"\nWell shucks, you sure had yourself quite the first day here on the farm, {player_name}!\n\nBut now, let me tell ya 'bout what you gotta do next. The goal is to build up a mighty friendship level of 5 with {pet_choice}.\n\nYou can get all sorts of fancy toys over at Pretty Pets, some darn fine clothes at Awful Attire, or rare potions over at Toadstool Tavern. And don't you forget to give {pet_choice} some grub from Grape Goods!\n\nNow, how you plannin' on payin' for all that, you ask? By workin' as Faerie Florist's accountant, of course! You already got yourself 100 dabloons, so you're in good shape for a spell.\n\n\033[3m｡･:*˚:✧｡ But the path you choose from here on out is all up to you ｡✧:˚*:･｡\033[0m")
+
+
+# reassigning pet shop products - from cows (pet instances) to toys (product instances)
+pet_shop.products_sold = {}
+Moosical = Product("Moo-sical Hoof","a pet toy")
+Cowbell = Product("Cowbell","a pet toy")
+Yoyo = Product("Yo-Yo","a pet toy")
+Teddy = Product("Teddy Calf","a pet toy")
+Ball = Product("Moo-print Ball","a pet toy")
+Teeth = Product("Teeth Strengthener","a pet toy")
+toys_dict = {(Moosical.name, Moosical.tpe):20, (Cowbell.name, Cowbell.tpe):20, (Yoyo.name, Yoyo.tpe):20, (Teddy.name, Teddy.tpe):20, (Ball.name, Ball.tpe):20, (Teeth.name, Teeth.tpe):20}
+toys_sold = pet_shop.add_products(toys_dict)
 
