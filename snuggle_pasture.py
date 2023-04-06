@@ -474,3 +474,53 @@ class Product:
     self.tpe = tpe 
   def __repr__(self):
     return f"{self.name}, {self.tpe}"
+  
+  # shop instances
+pet_shop = Shop("Pretty Pets", "Petunia","pets and pet toys", "the peachiest")
+food_shop = Shop("Grape Goods", "Greg", "groceries", "a delicious variety of")
+clothes_shop = Shop("Awful Attire", "Ambrosia", "clothes", "atrocious but artistic")
+flower_shop = Shop("Faerie Florist", "Frangipane", "flowers", "the rarest")
+pub_shop = Shop("Toadstool Tavern", "Topper", "alcoholic beverages", "the finest")
+
+# product instances
+Cornbread = Product("Cornbread", "a bread dish")
+Hay = Product("Hay", "a type of crop")
+Biscuits  = Product("Biscuits", "a snack")
+Tomatoes = Product("Tomatoes", "a fruit")
+Pecans = Product("Pecans", "a nut")
+Peaches = Product("Peaches", "a dessert")
+
+Collar = Product("Cowbell Collar","a decorative petcessory")
+Headband = Product("Horned Headband","a decorative petcessory")
+Covers = Product("Udder Covers","a decorative petcessory")
+Bandana = Product("Cow-print Bandana","a decorative petcessory")
+Ribbon = Product("Tail Ribbon","a decorative petcessory")
+Hoofrings = Product("Vogue Cow-Hoofrings","a decorative petcessory")
+
+Maximus = Product("Energy Maximus","a potion to increase your cow's energy")
+Friendlymaker = Product("Friendlymaker","a potion to make your cow friendly")
+Addyears = Product("Add a Couple Years","a potion to age your cow")
+Happycalf = Product("Happy Calf","a potion to make your cow happy")
+Upgrade = Product("Friendship Upgrade","a potion to increase your friendship level with your cow")
+Instantmoney = Product("Instant Dabloons","a potion to give you double what you spent buying it")
+
+# pet instances
+Gulliver = Pet('Gulliver','bouncy cow' ,3, energy=20, is_friendly=True)
+Caroline = Pet('Caroline','quiet cow', 7, energy=10 ,is_friendly=False)
+Chase = Pet('Chase','quirky cow', 5, is_friendly=False)
+Cuddly = Pet('Cuddly','bright cow', 10, energy=10)
+Bo = Pet('Bo','sweet cow', 2, energy=20)
+Pooh = Pet('Pooh','silly cow', 4, is_friendly=False)
+
+# dictionaries and products_sold lists for every shop
+pets_dict = {Gulliver:0,Caroline:0,Chase:0,Cuddly:0,Bo:0,Pooh:0}
+pets_sold = pet_shop.add_products_once(pets_dict)
+
+food_dict = {(Cornbread.name, Cornbread.tpe):15, (Hay.name, Hay.tpe):15, (Biscuits.name, Biscuits.tpe):15, (Tomatoes.name, Tomatoes.tpe):15, (Pecans.name, Pecans.tpe):15, (Peaches.name, Peaches.tpe):15}
+food_sold = food_shop.add_products(food_dict)
+
+clothes_dict = {(Collar.name, Collar.tpe):25, (Headband.name, Headband.tpe):25, (Covers.name, Covers.tpe):25, (Bandana.name, Bandana.tpe):25, (Ribbon.name, Ribbon.tpe):25,(Hoofrings.name, Hoofrings.tpe):25}
+clothes_sold = clothes_shop.add_products(clothes_dict)
+
+potions_dict = {(Maximus.name, Maximus.tpe):30, (Friendlymaker.name, Friendlymaker.tpe):30, (Addyears.name, Addyears.tpe):30, (Happycalf.name, Happycalf.tpe):30, (Upgrade.name, Upgrade.tpe):50, (Instantmoney.name, Instantmoney.tpe):50}
+potions_sold = pub_shop.add_products(potions_dict)
