@@ -475,7 +475,7 @@ class Product:
   def __repr__(self):
     return f"{self.name}, {self.tpe}"
   
-  # shop instances
+# shop instances
 pet_shop = Shop("Pretty Pets", "Petunia","pets and pet toys", "the peachiest")
 food_shop = Shop("Grape Goods", "Greg", "groceries", "a delicious variety of")
 clothes_shop = Shop("Awful Attire", "Ambrosia", "clothes", "atrocious but artistic")
@@ -964,7 +964,6 @@ text_loading("\n" + border4 + "\n\n")
 loading(2)
 text_loading(f"\nWell shucks, you sure had yourself quite the first day here on the farm, {player_name}!\n\nBut now, let me tell ya 'bout what you gotta do next. The goal is to build up a mighty friendship level of 5 with {pet_choice}.\n\nYou can get all sorts of fancy toys over at Pretty Pets, some darn fine clothes at Awful Attire, or rare potions over at Toadstool Tavern. And don't you forget to give {pet_choice} some grub from Grape Goods!\n\nNow, how you plannin' on payin' for all that, you ask? By workin' as Faerie Florist's accountant, of course! You already got yourself 100 dabloons, so you're in good shape for a spell.\n\n\033[3m｡･:*˚:✧｡ But the path you choose from here on out is all up to you ｡✧:˚*:･｡\033[0m")
 
-
 # reassigning pet shop products - from cows (pet instances) to toys (product instances)
 pet_shop.products_sold = {}
 Moosical = Product("Moo-sical Hoof","a pet toy")
@@ -976,3 +975,183 @@ Teeth = Product("Teeth Strengthener","a pet toy")
 toys_dict = {(Moosical.name, Moosical.tpe):20, (Cowbell.name, Cowbell.tpe):20, (Yoyo.name, Yoyo.tpe):20, (Teddy.name, Teddy.tpe):20, (Ball.name, Ball.tpe):20, (Teeth.name, Teeth.tpe):20}
 toys_sold = pet_shop.add_products(toys_dict)
 
+# game loop
+done = False
+while not done:
+  while user.pet.friendship_level < 5:
+    while True:
+      if user.pet.friendship_level >= 5:
+       break
+      text_loading("\n\nWhat do you want to do now, {name}?\n".format(name=player_name))
+      menu = "\n1. Go home\n2. Feed {pet}\n3. Play with {pet}\n4. Change {pet}'s accessories\n5. Give {pet} a potion\n6. Go to a shop\n7. Go to work\n8. See current player stats\n9. See pet stats\n10. Quit game (progress will not be saved)".format(pet=pet_choice)
+      for line in menu.split('\n'):
+         text_loading(line)
+         print()
+      user_input = input("\nEnter an option between 1-10:\n\n(⌒▽⌒)☞ ")
+      option = user_input.split()[0]
+      if option == "1":
+          if player_location == "Home":
+            text_loading("\nYou're already at home!")
+            break
+          else:
+             player_location = "Home"
+             text_loading("You are heading to Home!\n\n")
+             display_location(player_location)
+             text_loading(f"You have arrived at {player_location}.\n\n")
+             break
+      elif option == "2":
+          while True:
+            text_loading(f"\n\nDo you want to feed {pet_choice}?\n\nPlease enter yes, no, or 'go home' to return to main menu:")
+            y = input("\n\n(⌒▽⌒)☞ ")
+            if y.lower() == "yes":
+              print()
+              feed_pet()
+            elif y.lower() == "no":
+              print()
+              text_loading("No problem\n\n")
+              break
+            elif y.lower() == "go home" or y == "1":
+               break  
+            else:
+               text_loading("Invalid input, try again\n")  
+      elif option == "3":
+         while True:
+            text_loading(f"\n\nDo you want to play with {pet_choice}?\n\nPlease enter yes, no, or 'go home' to return to main menu:")
+            y = input("\n\n(⌒▽⌒)☞ ")
+            if y.lower() == "yes":
+              play_pet()
+            elif y.lower() == "no":
+              text_loading("No problem\n\n")
+              break
+            elif y.lower() == "go home" or y == "1":
+               break  
+            else:
+               text_loading("Invalid input, try again\n")   
+      elif option == "4":
+         while True:
+            text_loading(f"\n\nDo you want {pet_choice} to put on or change petcessories?\n\nPlease enter yes, no, or 'go home' to return to main menu:")
+            y = input("Enter an option:\n\n(⌒▽⌒)☞ ")
+            if y.lower() == "yes":
+              change_pet()
+            elif y.lower() == "no":
+              text_loading("No problem\n\n")
+              break
+            elif y.lower() == "go home" or y == "1":
+               break  
+            else:
+               text_loading("Invalid input, try again\n") 
+      elif option == "5":
+         # break
+         while True:
+            text_loading(f"\n\nDo you want to give {pet_choice} a potion? The effects cannot be reversed.\n\nPlease enter yes, no, or 'go home' to return to main menu:")
+            y = input("Enter an option:\n\n(⌒▽⌒)☞ ")
+            if y.lower() == "yes":
+              potion_pet()
+            elif y.lower() == "no":
+              text_loading("No problem\n\n")
+              break
+            elif y.lower() == "go home" or y == "1":
+               break  
+            else:
+               text_loading("Invalid input, try again\n") 
+      elif option == "6":
+         valid2 = False
+         while True:
+            shop_menu = f"\nWhere do you want to go?\n\n1. Pretty Pets\n2. Grape Goods\n3. Awful Attire\n4. Toadstool Tavern"
+            for line in shop_menu.split('\n'):
+               text_loading(line)
+               loading(0.5)
+            shop_input = input("Enter an option between 1-4:\n\n(⌒▽⌒)☞ ")
+            shop_option = shop_input.split()[0]
+            if shop_option == "1":
+               if not toys_dict:
+                  text_loading("THIS SHOP HAS SOLD OUT OF PRODUCTS")
+                  valid2 = True
+                  break
+               else:
+                  player_location = "Pretty Pets"
+                  text_loading("You are heading to Pretty Pets!")
+                  display_location(player_location)
+                  text_loading(f"You have arrived at {player_location}.\n\n")
+                  pet_shop.at_shop(user)
+                  valid2 = True
+                  break
+            elif shop_option == "2":
+               if not food_dict:
+                  text_loading("THIS SHOP HAS SOLD OUT OF PRODUCTS")
+                  valid2 = True
+                  break
+               else:
+                  player_location = "Grape Goods"
+                  text_loading("You are heading to Grape Goods!")
+                  display_location(player_location)
+                  text_loading(f"You have arrived at {player_location}.\n\n")
+                  food_shop.at_shop(user)
+                  valid2 = True
+                  break
+            elif shop_option == "3":
+               if not clothes_dict:
+                  text_loading("THIS SHOP HAS SOLD OUT OF PRODUCTS")
+                  valid2 = True
+                  break
+               else:
+                  player_location = "Awful Attire"
+                  text_loading("You are heading to Awful Attire!")
+                  display_location(player_location)
+                  text_loading(f"You have arrived at {player_location}.\n\n")
+                  clothes_shop.at_shop(user)
+                  valid2 = True
+                  break
+            elif shop_option == "4":
+               if not potions_dict:
+                  text_loading("THIS SHOP HAS SOLD OUT OF PRODUCTS")
+                  valid2 = True
+                  break
+               else:
+                  player_location = "Toadstool Tavern"
+                  text_loading("You are heading to Toadstool Tavern!")
+                  display_location(player_location)
+                  text_loading(f"You have arrived at {player_location}.\n\n")
+                  pub_shop.at_shop(user)
+                  valid2 = True
+                  break
+            else:
+               text_loading("\nPlease enter a valid option.\n")
+         if not valid2:
+            text_loading("Error: invalid input")
+      elif option == "7":
+          text_loading(f"\nHi there {player_name}, ready for your shift at Faerie Florist's? We could really use those city smarts with these finances of ours.\n")
+          while True:
+             choose_work = input("Enter yes, no or go home to return to main menu:\n\n(⌒▽⌒)☞ ")
+             if choose_work.lower() == "yes":
+                player_location = "Faerie Florist"
+                text_loading("You are heading to Faerie Florist!")
+                display_location(player_location)
+                text_loading("You have arrived at work. Time to grind!\n\n")
+                work()
+                break
+             elif choose_work.lower() == "no":
+                text_loading("No problem\n\n")
+                break
+             elif choose_work.lower() == "go home" or choose_work.lower() == "1":
+                break  
+             else:
+                text_loading("\nPlease enter a valid option.\n") 
+      elif option == "8":
+          text_loading(user)
+      elif option == "9":
+         text_loading(user.pet)
+      elif option == "10":
+         text_loading("Thank you for playing!\n\n")
+         done = True
+         break
+      else:
+          text_loading("\nPlease enter a valid option.\n")
+    break
+  if user.pet.friendship_level >= 5:
+     pygame.mixer.music.load(r'end.mp3')
+     pygame.mixer.music.play()
+     text_loading("\nYou have completed this game, thank you for playing!")
+     break
+          
+sys.exit()
